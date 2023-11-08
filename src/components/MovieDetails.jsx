@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../services/api';
 import { POSTER_SIZE, IMAGE_BASE_URL } from '../constants/constants';
+import { Card, CardContent, CardMedia, Typography, Container } from '@mui/material';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -19,22 +20,30 @@ function MovieDetails() {
   }, [id]);
 
   return (
-    <div>
+    <Container>
       {movie ? (
         <div className="movie-details">
-          <h2>{movie.original_title}</h2>
-          <img
-              src={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
+            <Card>
+            <CardMedia
+              component="img"
               alt={movie.title}
+              height="500"
+              image={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
             />
-          <p>{movie.overview}</p>
-          <p>User Rating: {movie.vote_average}</p>
-          <p>Release Date: {movie.release_date}</p>
+            <CardContent>
+              <Typography variant="h4" component="div">
+                {movie.original_title}
+              </Typography>
+              <Typography variant="body1">{movie.overview}</Typography>
+              <Typography variant="body2">User Rating: {movie.vote_average}</Typography>
+              <Typography variant="body2">Release Date: {movie.release_date}</Typography>
+            </CardContent>
+          </Card>
         </div>
       ) : (
         <div>Loading...</div>
       )}
-    </div>
+    </Container>
   );
 }
 
