@@ -1,8 +1,8 @@
 import React from 'react';
-import { getByTestId, render, screen, waitFor} from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import MovieGrid from './MovieGrid';
 import { fetchPopularMovies } from '../../services/api';
-import { MemoryRouter, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 jest.mock('../../services/api');
 

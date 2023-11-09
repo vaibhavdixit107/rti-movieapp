@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { fetchPopularMovies, fetchMovieDetails } from './api'; // Adjust the path based on your file structure
+import { fetchPopularMovies, fetchMovieDetails } from './api';
 
 jest.mock('axios');
 
