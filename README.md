@@ -1,3 +1,12 @@
+# Getting the API Key to run the application
+
+Use this to sign up and generate the API key[https://www.themoviedb.org/signup].
+
+Once the API key is generated replace the API in constants.js
+
+For now the API key is empty.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
