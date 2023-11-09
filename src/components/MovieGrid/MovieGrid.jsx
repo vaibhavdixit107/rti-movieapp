@@ -11,7 +11,7 @@ function MovieGrid() {
     // Fetch popular movies
     fetchPopularMovies()
       .then(response => {
-        console.log(response.data);
+        console.log(response.data.results);
         setMovies(response.data.results);
       })
       .catch(error => {

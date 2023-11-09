@@ -1,11 +1,10 @@
 import React from 'react';
-import { getByTestId, render, screen } from '@testing-library/react';
+import { getByTestId, render, screen, waitFor} from '@testing-library/react';
 import MovieGrid from './MovieGrid';
 import { fetchPopularMovies } from '../../services/api';
+import { MemoryRouter, Route } from 'react-router-dom';
 
-jest.mock('../../services/api', () => ({
-  fetchPopularMovies: jest.fn(() => Promise.resolve({ data: { results: [] } })),
-}));
+jest.mock('../../services/api');
 
 const mockMovies = [
   {
@@ -22,18 +21,16 @@ const mockMovies = [
 
 
 describe('MovieGrid UI Tests', () => {
-  it('renders the movie grid with movie posters', async () => {
-    fetchPopularMovies.mockResolvedValue({ data: { results: mockMovies } });
+  it('renders popular movies', async () => {
+    fetchPopularMovies.mockResolvedValueOnce({ data: { results: mockMovies } });
 
-    render(<MovieGrid />);
-
-    
-   
-
-    // Wait for the "Popular Movies" text to be present
-    await screen.findByText('Popular Movies');
-    // console.log(screen.debug());
-    
-    
+    render(
+      <MemoryRouter>
+        <MovieGrid />
+      </MemoryRouter>
+    );
+    await waitFor(() => {
+      expect(screen.getByText('Popular Movies')).toBeInTheDocument();
+    });
   });
 });
