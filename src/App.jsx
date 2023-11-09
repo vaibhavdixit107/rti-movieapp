@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import MovieGrid from './components/MovieGrid';
-import MovieDetails from './components/MovieDetails';
+import MovieGrid from './components/MovieGrid/MovieGrid';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 function App() {
   return (

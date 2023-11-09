@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieDetails } from '../services/api';
-import { POSTER_SIZE, IMAGE_BASE_URL } from '../constants/constants';
+import { fetchMovieDetails } from '../../services/api';
+import { POSTER_SIZE, IMAGE_BASE_URL } from '../../constants/constants';
 import { Card, CardContent, CardMedia, Typography, Container } from '@mui/material';
 
 function MovieDetails() {
@@ -12,6 +12,7 @@ function MovieDetails() {
     // Fetch movie details based on the ID from the URL parameter
     fetchMovieDetails(id)
       .then(response => {
+        console.log(response.data);
         setMovie(response.data);
       })
       .catch(error => {
@@ -26,13 +27,13 @@ function MovieDetails() {
             <Card>
             <CardMedia
               component="img"
-              alt={movie.title}
+              alt={movie.title || 'Poster Image'}
               height="500"
               image={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
             />
             <CardContent>
-              <Typography variant="h4" component="div">
-                {movie.original_title}
+              <Typography variant="h4" component="div" data-testid="title">
+                {movie.title}
               </Typography>
               <Typography variant="body1">{movie.overview}</Typography>
               <Typography variant="body2">User Rating: {movie.vote_average}</Typography>
