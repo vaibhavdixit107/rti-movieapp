@@ -12,7 +12,6 @@ function MovieDetails() {
     // Fetch movie details based on the ID from the URL parameter
     fetchMovieDetails(id)
       .then(response => {
-        console.log(response.data);
         setMovie(response.data);
       })
       .catch(error => {
